@@ -131,7 +131,7 @@ public class Main {
 
 
     /**
-     * Process the command line arguments and perform the appropriate main action (update, rollback etc.)
+     * Setup logging, process the command line arguments and perform the appropriate main action (update, rollback etc.)
      *
      * @param args the command line arguments
      * @return the errorlevel to be returned to the operating system, e.g. for further processing by scripts
@@ -139,7 +139,18 @@ public class Main {
      */
     public static int run(String[] args) throws LiquibaseException {
         setupLogging();
+        runWithCurrentLoggingConfiguration(args);
+    }
 
+    
+    /**
+     * Process the command line arguments and perform the appropriate main action (update, rollback etc.)
+     *
+     * @param args the command line arguments
+     * @return the errorlevel to be returned to the operating system, e.g. for further processing by scripts
+     * @throws LiquibaseException a runtime exception
+     */
+    public static int runWithCurrentLoggingConfiguration(String[] args) throws LiquibaseException {
         Logger log = LogService.getLog(Main.class);
         boolean outputLoggingEnabled = false;
 
